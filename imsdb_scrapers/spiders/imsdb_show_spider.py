@@ -1,6 +1,6 @@
 # example:
 # ```
-#     scrapy crawl imsdb_show -a target_url="https://imsdb.com/TV/Futurama.html" -o futurama_v2.jsonl
+#     scrapy crawl imsdb_show -a target_url="https://imsdb.com/TV/Futurama.html" -o futurama.jsonl
 # ```
 import scrapy
 
