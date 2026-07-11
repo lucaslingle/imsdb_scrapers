@@ -15,5 +15,7 @@ class IMSDBMovieSpider(scrapy.Spider):
         yield response.follow(href, callback=self.parse_scriptpage)
     
     def parse_scriptpage(self, response):
-        script_text = response.css("pre").get()
-        yield {"text": script_text}
+        yield {
+            "script_url": response.url,
+            "script_text": response.css("pre").get()
+        }
