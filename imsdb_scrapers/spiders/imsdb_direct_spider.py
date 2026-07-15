@@ -10,7 +10,7 @@ class IMSDBDirectSpider(scrapy.Spider):
     name = "imsdb_direct"
 
     async def start(self):
-        target_urls = self.read_jsonl(self.targets)
+        target_urls = set[str](self.read_jsonl(self.targets))
         done_urls = set[str](self.read_jsonl(self.dones))
         for url in target_urls:
             if url not in done_urls:
