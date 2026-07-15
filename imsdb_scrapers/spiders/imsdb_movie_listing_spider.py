@@ -1,11 +1,11 @@
 # example:
 # ```
-#     scrapy crawl imsdb_listing -o all_movies_listing.jsonl
+#     scrapy crawl imsdb_movie_listing -o movie_listings.jsonl
 # ```
 import scrapy
 
-class IMSDBListingSpider(scrapy.Spider):
-    name = "imsdb_listing"
+class IMSDBMovieListingSpider(scrapy.Spider):
+    name = "imsdb_movie_listing"
 
     async def start(self):
         target_urls = [
@@ -30,9 +30,13 @@ class IMSDBListingSpider(scrapy.Spider):
         ]
         for url in target_urls:
             yield scrapy.Request(url, callback=self.parse_genrepage)
-    
+
     def parse_genrepage(self, response):
         for href in response.css("p a::attr(href)").getall():
-            yield {
-                "movie_url": response.urljoin(href)
-            }
+            yield response.follow(href, callback=self.parse_moviepage)
+
+    def parse_moviepage(self, response):
+        href = response.css("p a::attr(href)").get()
+        yield {
+            "script_url": response.urljoin(href)
+        }

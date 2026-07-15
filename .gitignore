@@ -5,6 +5,7 @@ __pycache__/
 *.json
 *.jsonl
 *.html
+datasets/
 
 # C extensions
 *.so
