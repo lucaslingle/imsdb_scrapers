@@ -45,4 +45,4 @@ To scrape the scripts for all script urls in a jsonl file ```target_urls```:
 scrapy crawl imsdb_direct -a targets=target_urls.jsonl -a dones=scripts.jsonl -o scripts.jsonl
 ```
 The format for the ```targets``` file should be ```{'script_url': ...}``` per line.
-The dones file allows resuming where you left off, if the script is shut down before it is done scraping. 
+The ```dones``` file allows resuming where you left off, if the script is shut down before it is done scraping. 
